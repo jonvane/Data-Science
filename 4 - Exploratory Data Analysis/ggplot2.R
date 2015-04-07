@@ -56,3 +56,36 @@ qplot(log(pm25),log(eno),data=maacs,color=mopos)
 qplot(log(pm25),log(eno),data=maacs,color=mopos,geom=c("point","smooth"),method="lm")
 
 qplot(log(pm25),log(eno),data=maacs,geom=c("point","smooth"),method="lm",facets=.~mopos)
+
+## ggplot2 (part 3)
+
+load("maacs.Rda")
+
+## Does BMI (normal vs. overweight) modify the relationship between PM2.5 and asthma symptoms?
+
+## Basic Plot
+
+qplot(logpm25, NocturnalSympt, data = maacs, facets = . ~ bmicat, geom = c("point","smooth"), method = "lm")
+
+head(maacs[,1:3])
+g <- ggplot(maacs,aes(logpm25,NocturnalSympt))
+summary(g)
+
+## No Plot Yet!
+
+print(g)
+
+p <- g + geom_point() ## explicitly save and print ggplot object
+print(p)
+
+g + geom_point() ## auto-print plot object without saving
+
+## First Plot with Point Layer
+
+g <- ggplot(maacs,aes(logpm25,NocturnalSympt))
+g + geom_point()
+
+## ggplot2 (part 4)
+
+## Adding More Layers: Smooth
+
